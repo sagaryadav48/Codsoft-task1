@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website- John Doe</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            /* box-sizing: border-box; */
+            font-family: "Be Vietnam Pro" , sans-serif;
+            scroll-behavior: smooth; /* jab kisi link pe click karenge to smoothly jayega naaki jerk se */
+        }
+
+        :root{
+            --bgOrange: #e84949;
+        }
+
+        #wrapper{
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .container{
+            width: 1200px;
+            margin: 0 auto; /* ye taaki content center me ho */
+        }
+
+        .navbar{
+            display: flex;
+            /* by default  */
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.2rem ;
+        }
+
+        .logo{
+            width: 80px;
+        }
+
+        .logo-container{
+            display: flex;
+            justify-content: baseline; /* ye isiliye because J pic and ohn alag size ke the . ab unko same line me laane ke liye use hua */
+            align-items: center;
+        }
+
+        .logo-text{
+            margin-left: -1.2rem;
+            font-size: 28px;
+
+        }
+
+        .nav-items{
+            display: flex;
+            gap: 2rem;  /* ye taaki projects skills wagera ke beech me gap aa jaye */
+            padding: 0 4rem;
+        }
+
+        .nav-items div{
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-items div a{
+            color: black; /* project skill wagera ka color blue se black ke liye */
+        }
+
+        a{
+            text-decoration: none; /* jo ye project skill ke neeche underline aari hai usse remove karne ke liye */
+        }
+
+        .nav-items div:hover{
+            font-weight: bold;
+            transition: 0.8s;
+        }
+
+        .hero-section{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5rem;
+            margin: 4rem auto;
+            padding: 0 1rem;
+            padding-bottom: 8rem;
+        }
+
+        .faded-text{
+            position: absolute;
+            user-select: none; /* taaki koi iss text ko copy na kar ske */
+            font-size: 7em;
+            color: rgb(231, 231, 231);
+            bottom: -16%;
+            left: -5%;
+            font-weight: bold;
+            transition: all 3s;
+        }
+
+        .hero-section-left{
+            display: flex;
+            width: 663px;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .hero-section-heading {
+            font-size: 35px;
+            font-weight: 500;
+            color: #343d68;
+        }
+
+        .role{
+            font-weight: 800;
+            color: #4e45d5;
+        }
+
+        .hero-section-subhead{
+            font-size: 45px;
+            line-height: 45px;
+        }
+
+        .hero-section-desc{
+            margin-top: 1rem;
+            width: 70%;
+            font-weight: 500;
+        }
+
+        /* ye neeche wala sara code button wale assignment se copied hai */
+
+        .btn-pink{
+            background-color: #e84949;
+            width: fit-content;
+            padding: 0.8rem 2.3rem;
+            color: white;
+            font-size: 18px;
+            box-shadow: 5px 5px 7px 0px #0000003f;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.5s;
+            border: solid 3px transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-pink::before{
+            content: "";
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: 0.8s;
+            z-index: -1;
+        }
+
+        .btn-pink:hover::before{
+            transform: scaleX(1);
+        }
+
+        .btn-pink:hover{
+            border: solid 3px (--bgOrange);
+            color: black;
+        }
+
+        .hero-section-right{
+            position: relative;
+        }
+
+        .absolute{
+            position: absolute;
+        }
+
+        .user-image{
+            padding: 2.5rem; /* pic ke bagal me jo patti hai vo isse banegi */
+            filter: grayscale(1);
+            transition: all 1s;
+            animation: scaleImage 5s linear infinite;
+        }
+
+        .user-image img{
+            z-index: -9;
+        }
+
+        @keyframes scaleImage {
+            
+            0%{
+                filter: grayscale(0);
+                transform: scale(1);
+            }
+            50%{
+                transform: scale(1.1);
+                filter: grayscale(1);
+                box-shadow: 3px 3px 10px black;
+            }
+            100%{
+                transform: scale(1);
+                filter: grayscale(0);
+            }
+        }
+
+        .icon-dots{
+            z-index: 9;
+            bottom: -1rem;
+            right: 0;
+            animation: dotsanimation 5s infinite;
+        }
+
+        @keyframes dotsanimation {
+            0%{
+                transform: translateY(0px);
+            }
+            50%{
+                transform: translateY(-15px);
+            }
+            100%{
+                transform: translateY(0px);
+            }
+        }
+
+        .icon-cube{
+            z-index: 9;
+            top: -0.8em;
+            right: 1em;
+            animation: cubeAnimation 5s infinite;
+        }
+
+        @keyframes cubeAnimation {
+            0%{
+                transform: translateY(0px) rotateY(0deg);
+            }
+            50%{
+                transform: rotateY(180deg) translateY(-12px);
+            }
+            100%{
+                transform: rotateY(360deg) translateY(0px);
+            }
+        }
+
+        .icon-circle{
+            z-index: 9;
+            bottom: 0;
+            left: 0;
+            animation: circAnimation 7s infinite;
+        }
+
+        @keyframes circAnimation {
+            0%{
+                left: 0;
+                bottom: 0;
+            }
+            50%{
+                left: 5%;
+                bottom: 10%;
+            }
+            100%{
+                left: 0;
+                bottom: 0;
+            }
+        }
+
+        .icon-zigzags{
+            z-index: 9;
+            top: 1.5em;
+            left: -0.3em;
+            animation: zigAnimation 5s ease-in infinite;
+        }
+
+        @keyframes zigAnimation {
+            50%{
+                top: 5%;
+                left: 2%;
+            }
+        }
+
+        .icon-plus{
+            z-index: 9;
+            top:  -0.8rem;
+            left: 50%;
+            animation: plusAnimation 5s ease-in infinite;
+        }
+
+        @keyframes plusAnimation {
+            50%{
+                top: 3%;
+                left: 48%;
+            }
+        }
+
+        .project-section{
+            background-color: rgb(231, 231, 231);
+            margin-top: 4rem;
+        }
+        .page-header{
+            color: var(--bgOrange);
+            font-size: 90px;
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .project-container{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 120px;
+        }
+
+        .project-card{
+            width: 90%;
+            height: 550px;
+            background-image: url(./images/projects/Project1.png);
+            background-size: cover; /* taki puri image fit ho jaye */
+            background-repeat: no-repeat; /* agar image choti hai to fill karne ke liye baar baar na aaye image */
+            position: relative;
+            box-shadow: 0px 0px 40px #1f1f1f;
+        }
+
+        .project-card::after{ /* ye black tint ke liye hai */
+            content: ""; /* content har baar likhna hota hai */
+            position: absolute; /* taaki tint puri image ko overlap karle */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0; /*  ye chaar isiliye taki project color ko pura cover kare */
+        background-color: #1f1f1f9a;
+        z-index: 0;
+        transform: scaleX(1); 
+        }
+
+        .project-card::before{ /* ye blue sliding filter ke  liye */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,#343d68, #343d68be, #343d687c);
+            transform: scaleX(0); /* because normally nahi dikhna chhaiye , only on hover */
+            /* hamne opacity isisliye use nahi ki because hame slide karana hai, opacity se ussi jagah prakat ho jata */
+            transform-origin: left;
+            transition: all 0.4s;
+            z-index: 1;
+        }
+
+        .project-card:hover::before{  /* iska mtlb hai hover karte time before me kya changes honge */
+            transform: scaleX(1);
+        }
+
+        .project-number{
+            position: absolute;
+            font-size: 200px;
+            font-weight: 600;
+            color: rgb(255, 255, 255);
+            z-index: 1;
+            display: none; /* display ki jagah yahan opacity 0 kar skte the */
+        }
+
+        .project-card:hover .project-number{
+            display: block; /* display ki jagah yahan opacity 1 kar skte the */
+
+        }
+
+        .project-number-right{
+            right: -40px;
+            top: -45px;
+        }
+
+        .project-number-left{
+            left: -40px;
+            top: -45px;
+        }
+
+        .project-content{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 2em;
+            bottom: 20%;
+            z-index: 1;
+            gap: 1em;
+            transition: all 0.4s;
+        }
+
+        .project-content-left{
+            left: 10%;
+        }
+
+        .project-content-right{
+            right: 10%;
+        }
+
+        .project-skills-container{
+            width: 60%;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap; /* incase skill logo ek line me na aa paye to next line me chala jaye */
+        }
+
+        .project-skill{
+            width: 40px;
+        }
+
+        .project-heading{
+            font-size: 50px;
+            font-weight: bold;
+            line-height: 3rem;
+        }
+
+        .project-sub-heading{
+            width: 70%;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .btn-group{
+            display: flex;
+            gap: 0.9rem;
+            align-items: center;
+        }
+
+        .btn-project:hover{
+            border: none;
+        }
+
+        .icon{
+            cursor: pointer;
+            color: white;
+            font-size: 35px;
+            transition: all 0.4s;
+        }
+
+        .icon:hover{
+            color: var(--bgOrange);
+        }
+
+        .project-card:hover .project-content{
+            transform: scale(1.08);
+        }
+
+        #project1{
+            background-image: url(Project1.png);
+        }
+
+        #project2{
+            margin-left: 120px;
+            background-image: url(Project2.png);
+        }
+
+        #project3{
+            background-image: url(Project3.png);
+        }
+
+        #project4{
+            margin-left: 120px;
+            background-image: url(Project4.png);
+        }
+
+
+        /* Media Queries eyngi beech me */
+
+
+        .skills-container{
+            position: relative;
+            display: flex;
+            padding: 5rem;
+            margin: 10rem auto;
+            gap: 30px;
+        }
+
+        .skill-container-left{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skill-container-right{
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .skill-fade-text{
+            font-size: 15em;
+            font-style: bold;
+            color: rgb(231, 231, 231);
+            bottom: -34.5%;
+            right: -3.5%;
+            user-select: none;
+            position: absolute;
+            overflow-y: hidden;
+        }
+
+        .blob-style{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: blobAnimate 3s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes blobAnimate {
+            50%{
+                top: 54%;
+                left: 46%;
+            }
+        }
+
+        .skills-logo{
+            width: 90px;
+            transition: all 0.5s;
+        }
+
+        .skills-logo:hover{
+            transform: scale(1.2);
+        }
+
+        .skill-heading{
+            font-size: 50px;
+            font-style: bold;
+            color: var(--bgOrange);
+            line-height: 50px;
+        }
+
+        .caps{
+            font-size: 90px;
+        }
+
+        .skill-subheading{
+            margin-top: 1rem;
+            width: 85%;
+            text-align: justify; /* puri width leleta hai */
+        }
+
+        .skill-subheading p{
+            margin: 15px 0;
+        }
+
+        .contact-us-form-container{
+            background-color: rgb(231, 231, 231);
+            width: 100%;
+        }
+
+        .contact-us-heading{
+            font-size: 5em;
+            color: var(--bgOrange);
+            padding-top: 2rem;
+        }
+
+        .contact-us-subheading{
+            font-size: 3rem;
+            color: #343d68aa;
+            text-transform: capitalize; /* har word ka first letter capital ho gaya */
+        }
+
+        .contact-us-form-container{
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 70%;
+            margin: 2rem 5rem;
+        }
+
+        .form-field-container{
+            width: 100%;
+        }
+
+        .formfield{
+            width: 100%;
+            height: 42px;
+            padding: 0 2rem;
+            font-size: 18px;
+            border-radius: 5px; /* rounded corners */
+            box-shadow: 2px 2px 10px #1f1f1f;
+            font-weight: 500;
+            border: none;
+            margin-top: 27px;
+        }
+
+        .formfield-textarea{
+            height: auto;
+            padding-top: 1rem;
+        }
+
+        #submit-btn{
+            border: none;
+            font-size: 1.4rem;
+            margin: 1rem 0;
+        }
+
+        #submit-btn:hover{
+            scale: 0.9;
+        }
+
+        .submit-icon{
+            padding: 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        footer{
+            position: relative;
+            margin-top: -1px;
+            background-color: #343d68;
+            padding: 5rem;
+        }
+
+        .footer-wrapper{
+            display: flex;
+            gap: 1rem;
+            padding: 1.2rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-faded-text{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            color: #535c87;
+            user-select: none;
+            font-size: 5em;
+        }
+
+        .link-wrapper{
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .link-wrapper div a{
+            color: white;
+            text-decoration: none; /* underline hatane ke liye */
+            transition: all 0.6s;
+        }
+
+        .link-wrapper div a:hover{
+            color: var(--bgOrange);
+        }
+
+        .icon-wrapper{
+            display: flex;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="container">
+
+            <div class="navbar">
+                <div class="logo-container">
+                    <img src="NavLogo.jpg" class="logo">
+                    <div class="logo-text">ohn Doe</div>
+                </div>
+                <div class="nav-items">
+                    <div><a href="#projects">Projects</a></div>
+                    <div><a href="#skills">Skills</a></div>
+                    <div><a href="#contactme">Contact Me</a></div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <div class="absolute faded-text">
+                    SAGAR YADAV
+                </div>
+                <div class="hero-section-left">
+                    <div class="hero-section-heading">Hi! John Doe</div>
+                    <div class="hero-section-heading hero-section-subhead">
+                        I am a <span class="role"></span>
+                    </div>
+                    <div class="hero-section-desc">
+                        I'm a software engineer and here is my portfolio website. <br>
+                        Here y'll learn about my journey as a software engineer.
+                    </div>
+                    <div class="btn-pink" id="button">Hire Me</div>
+                </div>
+                <div class="hero-section-right">
+                    <div class="absolute icons icon-dots">
+                        <img src="dots.png">
+                    </div>
+                    <div class="absolute icons icon-cube">
+                        <img src="cube.png">
+                    </div>
+                    <div class="absolute icons icon-circle">
+                        <img src="circle.png">
+                    </div>
+                    <div class="absolute icons icon-zigzags">
+                        <img src="zigzags.png">
+                    </div>
+                    <div class="absolute icons icon-plus">
+                        <img src="plus.png">
+                    </div>
+                    <div class="user-image">
+                        <img src="abhi.jpeg"> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="project-section" id="projects">
+            <h2 class="page-header">Projects</h2>
+
+            <div class="project-container">
+                <div class="project-card" id="proj1">
+                    <div class="project-number project-number-right">01</div>
+                    <div class="project-content .project-content-left">
+                        <div class="project-skills-container">
+                            <img class="project-skill" src="HTML.png">
+                            <img class="project-skill" src="CSS.png">
+                            <img class="project-skill" src="Javascript.svg">
+                            <img class="project-skill" src="Express.png">
+                            <img class="project-skill" src="NextJsCircle.png">
+                            <img class="project-skill" src="Tailwind.png">
+                            <img class="project-skill" src="NodeJs.svg">
+                            <img class="project-skill" src="MongoDB.svg">
+                            <img class="project-skill" src="Redux.svg">
+                            <img class="project-skill" src="Vercel.svg">
+                        </div>
+                        <h2 class="project-heading">Tint & Orange</h2>
+                        <div class="project-sub-heading">
+                            It is a car modification company which provides you sheets to protect your car from scratch.
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-pink btn-project">Read More</button>
+                            <a href="">
+                                <i title="GitHubLink" class="fa-brands fa-github icon"></i>
+                            </a>
+                            <a href="">
+                                <i title="Live Link" class="fa-solid fa-link icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" id="project2">
+                    <div class="project-number project-number-left">02</div>
+                    <div class="project-content project-content-right">
+                        <div class="project-skill-container">
+                            <img class="project-skill" src="HTML.png" alt="" />
+                            <img class="project-skill" src="CSS.png" alt="" />
+                            <img class="project-skill" src="Javascript.svg" alt="" />
+                            <img class="project-skill" src="NextJsCircle.png" alt="" />
+                            <img class="project-skill" src="Tailwind.png" alt="" />
+                            <img class="project-skill" src="Redux.svg" alt="" />
+                            <img class="project-skill" src="Vercel.svg" alt="" />
+                        </div>
+                    <h2 class="project-heading">Breaking Copyrights</h2>
+                    <p class="project-sub-heading">
+                            A platform to download copyrights free youtube music
+                    </p>
+                    <div class="btn-group">
+                            <button class="btn-pink btn-project">Read More</button>
+                            <a href="">
+                                <i title="GitHubLink" class="fa-brands fa-github icon"></i>
+                            </a>
+                            <a href="">
+                                <i title="Live Link" class="fa-solid fa-link icon"></i>
+                            </a>
+                    </div>
+                    </div>
+                </div>
+            
+                <div class="project-card" id="project3">
+                    <div class="project-number project-number-right">03</div>
+                    <div class="project-content project-content-left">
+                    <div class="project-skill-container">
+                            <img class="project-skill" src="HTML.png" alt="" />
+                            <img class="project-skill" src="CSS.png" alt="" />
+                            <img class="project-skill" src="Javascript.svg" alt="" />
+                            <img class="project-skill" src="NextJsCircle.png" alt="" />
+                            <img class="project-skill" src="Tailwind.png" alt="" />
+                            <img class="project-skill" src="Vercel.svg" alt="" />
+                        </div>
+            
+                    <h2 class="project-heading">Isha Tattva</h2>
+                    <p class="project-sub-heading">
+                            A Website for interior designer to showcase her works and samples
+                    </p>
+                    <div class="btn-group">
+                            <button class="btn-pink btn-project">Read More</button>
+                            <a href="">
+                                <i title="GitHubLink" class="fa-brands fa-github icon"></i>
+                            </a>
+                            <a href="">
+                                <i title="Live Link" class="fa-solid fa-link icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="project-card" id="project4">
+                    <div class="project-number project-number-left">04</div>
+                    <div class="project-content project-content-right">
+                        <div class="project-skill-container">
+                            <img class="project-skill" src="NextJsCircle.png" alt="" />
+                            <img class="project-skill" src="Tailwind.png" alt="" />
+                            <img class="project-skill" src="Vercel.svg" alt="" />
+                        </div>
+                        <h2 class="project-heading">Granit</h2>
+                        <p class="project-sub-heading">
+                            A architectural website to plan your building or home (Hebrew
+                            Language)
+                        </p>
+                        <div class="btn-group">
+                            <button class="btn-pink btn-project">Read More</button>
+                            <a href="">
+                                <i title="GitHubLink" class="fa-brands fa-github icon"></i>
+                            </a>
+                            <a href="">
+                                <i title="Live Link" class="fa-solid fa-link icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="skills-container container" id="skills">
+            <div class="skill-fade-text">Skills</div>
+
+            <div class="skill-container-left">
+                <h2 class="skill-heading">
+                    <span class="caps">M</span>e and 
+                    <br>
+                    MyTech Stack
+                </h2>
+                
+                <div class="skill-subheading">
+                    <p>
+                        Hi Everyone My name is John Doe I am a Full Stack Web Developer I
+                        have been working for last 3 Years and Currently I am working with a
+                        Budding Startup in USA and a full Time Freelancer. Currently I am
+                        working on NextJs and Making Beautiful UI-UX are my fey features
+                    </p>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
+                        doloremque aspernatur, maiores voluptatum minus laudantium?
+                        Perspiciatis accusamus minima porro dolores necessitatibus, magni
+                        dolorem et qui veniam nulla sequi molestiae maxime.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quidem
+                        quos ullam veritatis voluptates tenetur qui ipsa nulla culpa itaque?
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="skill-container-right">
+
+                <img src="blob vector.png" class="blob-style"> 
+                <!-- animation -->
+                <img src="HTML.png" alt="" class="skills-logo" />
+                <img src="CSS.png" alt="" class="skills-logo" />
+                <img src="Javascript.svg" alt="" class="skills-logo" />
+                <img src="React.png" alt="" class="skills-logo" />
+                <img src="NodeJs.svg" alt="" class="skills-logo" />
+                <img src="Next.svg" alt="" class="skills-logo" />
+                <img src="Redux.svg" alt="" class="skills-logo" />
+                <img src="Tailwind.png" alt="" class="skills-logo" />
+                <img src="Bootstrap.svg" alt="" class="skills-logo" />
+                <img src="MaterialUI.svg" alt="" class="skills-logo" />
+                <img src="Express.png" alt="" class="skills-logo" />
+                <img src="Git.svg" alt="" class="skills-logo" />
+                <img src="Github.svg" alt="" class="skills-logo" />
+                <img src="Graphql.svg" alt="" class="skills-logo" />
+                <img src="MongoDB.svg" alt="" class="skills-logo" />
+                <img src="Vercel.svg" alt="" class="skills-logo" />
+                <img src="ChartJs.svg" alt="" class="skills-logo" />
+                <img src="Bash.svg" alt="" class="skills-logo" />
+                <img src="Docker.svg" alt="" class="skills-logo" />
+                <img src="K8s.svg" alt="" class="skills-logo" />
+
+            </div>
+
+        </div>
+
+        <div class="contact-us-form-container" id="contactme">
+            <div class="container">
+
+                <h1 class="contact-us-heading">Contact Me</h1>
+                <h3 class="contact-us-subheading">Questions, Thoughts, or just want to say hello?</h3>
+
+                <div class="contact-us-form-container">
+                    <form class="form" action="">
+                        <div class="form-field-container">
+
+                            <input class="formfield"
+                            type="text"
+                            name="name"
+                            id=""
+                            placeholder="Enter your name " />
+
+                            <input class="formfield"
+                            type="email"
+                            name="email"
+                            id=""
+                            placeholder="Enter your email" />
+
+                            <input class="formfield"
+                            type="text"
+                            name="subject"
+                            id=""
+                            placeholder="Enter your subject" />
+
+                            <textarea name="message"
+                            id="" cols="30" rows="10"
+                            class="formfield formfield-textarea"
+                            placeholder="Enter your message"></textarea>
+
+                        </div>
+
+                        <button type="submit" class="btn-pink" id="submit-btn">
+                            Send Message <i class="submit-icon fa-solid fa-paper-plane"></i>
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="footer-wrapper">
+                    <div class="footer-faded-text">Sagar Yadav</div>
+                    <div class="link-wrapper">
+
+                        <div>
+                            <a href="#projects">Projects</a>
+                        </div>
+                        <div>
+                            <a href="#skills">Skills</a>
+                        </div>
+                        <div>
+                            <a href="#contactme">Contact Me</a>
+                        </div>
+                    </div>
+
+                    <div class="icon-wrapper">
+                        <i class="fa-brands fa-linkedin icon"></i>
+                        <i class="fa-brands fa-github icon"></i>
+                        <i class="fa-brands fa-twitter icon"></i>
+                        <i class="fa-brands fa-instagram icon"></i>
+                        <i class="fa-regular fa-envelope icon"></i>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://kit.fontawesome.com/58a810656e.js" crossorigin="anonymous"></script>
+    <script>
+        var typeData = new Typed(".role", {
+        strings: [
+            "Full Stack Developer",
+            "Web Developer",
+            "UI-UX Designer",
+            "Backend Developer",
+            "Competitive Programmer",
+        ],
+        loop: true,
+        typeSpeed: 100,
+        backSpeed: 80,
+        backDelay: 1000,
+        });
+  </script>
+</body>
+</html>
